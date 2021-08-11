@@ -1,0 +1,14 @@
+super + {q, r}
+	bspc {quit, wm -r}
+
+super + t
+	alacritty
+
+super + f
+	firefox
+
+super + c
+	bspc node -c
+
+super + s
+	subl

@@ -4,11 +4,47 @@ super + {q, r}
 super + t
 	alacritty
 
+super + m
+	bspc desktop -l next
+
 super + f
-	firefox
+	chromium
+
+alt + f
+	bspc node -t \~fullscreen
+
+super + p
+	wmname LG3D & webstorm
 
 super + c
 	bspc node -c
 
 super + s
 	subl
+
+super + o
+	obsidian
+
+super + shift + {1-9}
+    id=$(bspc query -N -n); bspc node -d ^{1-9}; bspc node -f ${id}
+
+super + {1-6}
+	bspc desktop -f ^{1-6}
+
+alt + m
+	rofi -show run
+
+alt + r
+	pkill -usr1 -x sxhkd; notify-send 'sxhkd' 'Reloaded config'
+
+super + {Left, Down, Up, Right}
+	bspc node -f {west,south,north,east}
+	
+super + shift + {Left,Down,Up,Right}
+	bspwm_resize {west, south, north, east} 10
+	
+super + ctrl + {Left, Down, Up, Right}
+	bspc node -s {west, south, north, east}
+
+alt + {Tab, shift + Tab}
+	bspc {desktop next.occupied -f, desktop prev.occupied -f}

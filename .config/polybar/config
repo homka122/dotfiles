@@ -1,0 +1,176 @@
+[colors]
+background = #000000
+blue = #61afef
+nord = #81a1c1
+light_blue = #ADD8E6
+green = #a0c980
+purple = #c882e7
+orange = #d08770
+gray = #676E95
+red = #ec7279
+yellow = #ECBE7B
+
+[settings]
+screenchange-reload = true
+format-padding = 1
+
+[bar/root]
+offset-y = 2
+radius = 10
+height = 32
+border-size = 0
+fixed-center = true
+enable-ipc = true
+background = ${colors.background}
+line-size = 2
+padding-left = 0
+padding-right = 0
+font-0 = JetBrainsMono Nerd Font:style=Bold:pixelsize=11;3
+font-1 = JetBrainsMono Nerd Font:size=18;5
+font-2 = Material Design Icons:style=Bold:size=13;3
+font-3 = unifont:fontformat=truetype:size=13:antialias=true;
+font-4 = Noto Sans CJK JP:style=Regular:size=12;3
+tray-position = right
+tray-padding = 2
+wm-restack = bspwm
+override-redirect = false
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+[bar/main]
+inherit = bar/root
+width = 90%
+offset-x = 5%
+modules-left = bspwm mpd
+modules-center = date time
+modules-right = timer updates memory cpu pulseaudio powermenu
+
+
+[module/updates]
+type = custom/script
+exec = pacman -Qu | wc -l
+label = %output%
+interval = 100
+click-left = upgradepkg
+format-foreground = ${colors.orange}
+initial = 1
+
+
+[module/bspwm]
+type = internal/bspwm
+pin-workspaces = true
+inline-mode = true
+format = <label-state>
+
+label-focused = 
+label-focused-foreground = ${colors.blue}
+label-focused-padding = 1
+
+label-occupied = 
+label-occupied-foreground= ${colors.gray}
+label-occupied-padding = 1
+
+label-empty = 
+label-empty-foreground = ${colors.gray}
+label-empty-padding = 1
+
+
+[module/memory]
+type = custom/script
+internal = 2
+format-prefix = "﬙"
+format-foreground = ${colors.green}
+exec = $HOME/.config/polybar/scripts/memory
+click-left = $HOME/.config/polybar/scripts/memory --popup
+
+
+[module/cpu]
+type = internal/cpu
+interval = 3
+format-prefix = " "
+format-foreground = ${colors.nord}
+label = %percentage%%
+
+
+[module/powermenu]
+type = custom/text
+content-foreground = ${colors.red}
+content-padding = 2
+content = ""
+click-left = ~/.local/bin/scripts/powermenu
+
+
+[module/date]
+type = internal/date
+interval = 5
+date = "  %h %d %a"
+date-alt = "  %Y-%m-%d"
+format-foreground= ${colors.light_blue}
+label = %date% 
+
+
+[module/time]
+type = internal/date
+interval = 1
+time = "  %I:%M %p"
+time-alt = "  %H:%M:%S"
+format-foreground = ${colors.yellow}
+label = %time%
+
+
+[module/timer]
+type = custom/script
+exec = $HOME/.config/polybar/scripts/polybar-timer.sh tail '祥 00' 5
+tail = true
+
+format-foreground = ${colors.nord}
+
+click-left = $HOME/.config/polybar/scripts/polybar-timer.sh new 25 '祥' 'notify-send "Session finished"' ; /$HOME/.config/polybar/scripts/polybar-timer.sh update %pid%
+click-middle = $HOME/.config/polybar/scripts/polybar-timer.sh cancel ; /$HOME/.config/polybar/scripts/polybar-timer.sh update %pid%
+click-right = $HOME/.config/polybar/scripts/polybar-timer.sh new 5 '祥' 'notify-send "Break finished"' ; /$HOME/.config/polybar/scripts/polybar-timer.sh update %pid%
+scroll-up = $HOME/.config/polybar/scripts/polybar-timer.sh increase 60 || /path/to/polybar-timer.sh new 1 'TIMER:' 'notify-send -u critical "Timer expired."' ; /$HOME/.config/polybar/scripts/polybar-timer.sh update %pid%
+scroll-down = $HOME/.config/polybar/scripts/polybar-timer.sh increase -60 ; /$HOME/.config/polybar/scripts/polybar-timer.sh update %pid%
+
+
+[module/pulseaudio]
+type = internal/pulseaudio
+sink = alsa_output.usb-C-Media_Electronics_Inc._Bloody_Gaming_Audio_Device-00.analog-stereo
+use-ui-max = true
+interval = 1
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-foreground = ${colors.purple}
+
+format-muted = <label-muted>
+format-muted-prefix = 婢
+format-muted-foreground = ${colors.red}
+format-muted-underline = ${colors.red}
+
+label-volume = %percentage%%
+label-muted = " Muted"
+
+ramp-volume-0 = 奄
+ramp-volume-1 = 奔
+ramp-volume-2 = 墳
+
+
+[module/mpd]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+interval = 1
+
+format-online = <toggle> <icon-next> | <label-song>
+format-stopped = <toggle>
+format-online-foreground = ${colors.light_blue}
+
+label-song = %artist% - %title%
+label-offline = 🎜 mpd is offline
+
+icon-play = 契
+icon-next = 怜
+
+toggle-on-foreground = ${colors.blue}
+toggle-off-foreground = ${colors.blue}
+

@@ -10,3 +10,8 @@ $HOME/.config/oh-my-zsh
 
 ## Wallpaper Folder
 $HOME/.local/share/wallpapes
+
+## Packages
+```
+alacritty bspwm dunst mpd ncmpcpp picom polybar sxhkd pulseaudio (etc... "need update")
+```

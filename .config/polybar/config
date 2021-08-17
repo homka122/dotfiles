@@ -170,6 +170,7 @@ label-offline = 🎜 mpd is offline
 
 icon-play = 契
 icon-next = 怜
+icon-pause = 
 
 toggle-on-foreground = ${colors.blue}
 toggle-off-foreground = ${colors.blue}

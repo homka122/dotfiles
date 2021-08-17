@@ -42,7 +42,7 @@ BRANCH=${BRANCH:-master}
 # Other options
 CHSH=${CHSH:-yes}
 RUNZSH=${RUNZSH:-yes}
-KEEP_ZSHRC=${KEEP_ZSHRC:-no}
+KEEP_ZSHRC=${KEEP_ZSHRC:-yes}
 
 
 command_exists() {

@@ -13,5 +13,5 @@ $HOME/.local/share/wallpapes
 
 ## Packages
 ```
-alacritty bspwm dunst mpd ncmpcpp picom polybar sxhkd pulseaudio (etc... "need update")
+xorg xorg-server xorg-init git zsh bspwm sxhkd picom-ibhagwan-git feh polybar alacritty pulseaudio mpd ncmpcpp dunst libnotify rofi
 ```
